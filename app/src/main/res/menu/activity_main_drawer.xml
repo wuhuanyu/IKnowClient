@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Category">
+        <menu>
+            <item
+                android:id="@+id/nav_history"
+                android:title="History"/>
+            <item
+                android:id="@+id/nav_math"
+                android:title="Math"/>
+            <item
+                android:id="@+id/nav_astronomy"
+                android:title="Astronomy"/>
+        </menu>
+    </item>
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:title="Login"
+                android:icon="@drawable/login"
+                />
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout"
+                android:icon="@mipmap/logout"/>
+        </menu>
+    </item>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+
+</menu>
