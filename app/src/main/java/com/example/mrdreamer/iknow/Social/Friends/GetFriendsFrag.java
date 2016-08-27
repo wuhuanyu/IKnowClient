@@ -1,4 +1,4 @@
-package com.example.mrdreamer.iknow.Social;
+package com.example.mrdreamer.iknow.Social.Friends;
 
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -12,10 +12,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mrdreamer.iknow.AccountManage.LogoutTask;
 import com.example.mrdreamer.iknow.R;
+import com.example.mrdreamer.iknow.Social.Contract;
+import com.example.mrdreamer.iknow.Social.DataListAdapter;
+import com.example.mrdreamer.iknow.Social.DataSource.DataSource;
+import com.example.mrdreamer.iknow.Social.User;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by stack on 8/22/16.
@@ -26,6 +30,9 @@ public class GetFriendsFrag extends ListFragment implements Contract.View,SwipeR
     private TextView infoTextView;
     private ArrayList<User> friends=null;
     private SwipeRefreshLayout swipe;
+    private DataListAdapter arrayAdapter;
+    private boolean isFirst=true;
+    private static int count=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -35,14 +42,14 @@ public class GetFriendsFrag extends ListFragment implements Contract.View,SwipeR
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view= inflater.inflate(R.layout.frag_getfriends,container,false);
-         friendsListView=(ListView)view.findViewById(android.R.id.list);
+        friendsListView=(ListView)view.findViewById(android.R.id.list);
+
 
         infoTextView=(TextView)view.findViewById(android.R.id.empty);
         swipe=(SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh);
         swipe.setOnRefreshListener(this);
 
-
-       presenter.startQuery();
+        presenter.startQuery(true);
         return view;
     }
 
@@ -53,20 +60,23 @@ public class GetFriendsFrag extends ListFragment implements Contract.View,SwipeR
 
     @Override
     public void setDataList(ArrayList<User> friendsList) {
+        Log.i("Count",Integer.toString(++count));
         this.friends=friendsList;
-
-        ArrayAdapter<User> arrayAdapter=new FriendsListAdapter(getActivity(),R.layout.userinfo_list_config,friendsList);
-
+        arrayAdapter=new DataListAdapter(getActivity(),R.layout.userinfo_list_config,friendsList);
         friendsListView.setAdapter(arrayAdapter);
-          friendsListView.setOnItemClickListener((parent,itemView,position,id)->{
-           // Toast.makeText(getActivity(),"ItemClicked",Toast.LENGTH_SHORT).show();
-           // Log.i("listview","ItemClicked");
-            if(friends!=null){
-                     User friend=friends.get(position);
-                Toast.makeText(getActivity(),friend.getName(),Toast.LENGTH_SHORT).show();
-            }
-           // else Log.i(getClass().getSimpleName(),"friends is null");
+        friendsListView.setTextFilterEnabled(true);
+        friendsListView.setOnItemClickListener((parent,itemView,position,id)->{
+
+
         });
+
+
+
+
+
+
+        Log.i(getClass().getSimpleName(),friendsList.toString());
+
 
 
     }
@@ -81,20 +91,17 @@ public class GetFriendsFrag extends ListFragment implements Contract.View,SwipeR
     @Override
     public void onNoData() {
 
-        infoTextView.setText("No Friends Yet");
+        // infoTextView.setText("No Friends Yet");
     }
 
-    @Override
-    public void FetchData() {
-        presenter.startQuery();
-    }
+
 
     @Override
     public void onRefresh() {
-       // Toast.makeText(getActivity(),"swipe",Toast.LENGTH_SHORT).show();
-        presenter.startQuery();
+        // Toast.makeText(getActivity(),"swipe",Toast.LENGTH_SHORT).show();
+        presenter.startQuery(true);
         swipe.setRefreshing(false);
 
-       // Log.i("onRefresh","refresh");
+        // Log.i("onRefresh","refresh");
     }
 }

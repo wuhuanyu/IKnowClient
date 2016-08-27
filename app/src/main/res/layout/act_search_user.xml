@@ -21,5 +21,5 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/friends_list_frag_container"/>
+        android:id="@+id/users_listfragment"/>
 </LinearLayout>

@@ -13,22 +13,17 @@ public interface Contract  {
         void setDataList(ArrayList<User> friendsList);
         void onErrorHappened(String errorInfo);
         void onNoData();
-        void FetchData();
+      //  void FetchData();
 
 
 
     }
     interface Presenter{
-        void onDataListLoadedCallback(ArrayList<User> friendsList);
-        void onNoDataLoadedCallback(String errorInfo);
-        void startQuery();
-        void setModel(Model model);
+      //  void onDataListLoadedCallback(ArrayList<User> friendsList);
+       // void onNoDataLoadedCallback(String errorInfo);
+        void startQuery(boolean forceFriendsUpdate);
+        //void setModel(Model model);
 
     }
-    interface Model{
-        void FetchData();
 
-
-
-    }
 }

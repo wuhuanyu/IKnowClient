@@ -17,6 +17,10 @@ public class User {
         this.info=null;
         this.name=name;
     }
+    public User(String name){
+        this.name=name;
+        this.info="";
+    }
 
     public String getName(){
         return name;

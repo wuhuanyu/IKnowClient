@@ -21,14 +21,15 @@ import java.util.concurrent.TimeoutException;
  * Created by stack on 8/22/16.
  */
 
-public class FriendsListAdapter extends ArrayAdapter<User>{
+public class DataListAdapter extends ArrayAdapter<User>{
     private ArrayList<User> users;
     private Context context;
-    public FriendsListAdapter(Context context, int resource) {
+    public DataListAdapter(Context context, int resource) {
         super(context, resource);
+        this.context=context;
     }
 
-    public FriendsListAdapter(Context context, int itemLayoutResoureId, ArrayList<User>friends){
+    public DataListAdapter(Context context, int itemLayoutResoureId, ArrayList<User>friends){
         super(context,itemLayoutResoureId,friends);
         this.context=context;
         this.users=new ArrayList<>();
@@ -36,14 +37,22 @@ public class FriendsListAdapter extends ArrayAdapter<User>{
     }
 
 
+    public void replace(ArrayList<User> users){
+        this.users=users;
+        notifyDataSetChanged();
+    }
     private class ViewHolder{
         TextView name;
         TextView isLogin;
     }
     @Override
+    public int getCount(){
+        return this.users.size();
+    }
+    @Override
     public View getView(int position, View convertView, ViewGroup parent){
         ViewHolder holder=null;
-         Log.i("ConvertView",String.valueOf(position));
+       //  Log.i("ConvertView",String.valueOf(position));
         if(convertView==null){
             LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=layoutInflater.inflate(R.layout.userinfo_list_config,null);

@@ -15,11 +15,15 @@ public class Utils {
         FragmentTransaction transaction=manager.beginTransaction();
         transaction.add(id,fragment);
         transaction.commit();
-
-
-
-
     }
+    public static void replaceFragment(Activity activity, Fragment newFragment,int id){
+        FragmentTransaction transaction=activity.getFragmentManager().beginTransaction();
+        transaction.replace(id,newFragment);
+       // transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
     public static class Pair{
 
     }

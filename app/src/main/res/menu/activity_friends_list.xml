@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Add"
+        android:id="@+id/start_search_user"
+        app:showAsAction="ifRoom|collapseActionView"/>
+    <!--
+    <item
+        android:id="@+id/request_badge"
+        android:title="Info"
+
+        android:actionLayout="@layout/request_count"
+        android:icon="@drawable/shape_request_count"n
+        app:showAsAction="ifRoom"/>
+
+-->
+    <item
+        android:title="info"
+        app:showAsAction="always"
+        android:id="@+id/request_info_actionbar_item"
+
+        android:actionLayout="@layout/request_count"/>
+</menu>
