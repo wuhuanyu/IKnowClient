@@ -74,7 +74,7 @@ public class RequestInfo extends AppCompatActivity{
          users.addAll(result_6_user);
 
          Log.i(getClass().getSimpleName(),users.toString());
-         RequestInfoAdapter adapter=new RequestInfoAdapter(getActivity(),R.layout.request_info_config,result_1_user);
+         RequestInfoAdapter adapter=new RequestInfoAdapter(getActivity(),R.layout.request_info_config,users);
          listView.setAdapter(adapter);
      }
 

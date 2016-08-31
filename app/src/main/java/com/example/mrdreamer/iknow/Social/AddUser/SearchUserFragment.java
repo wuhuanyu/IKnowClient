@@ -60,7 +60,7 @@ public class SearchUserFragment extends ListFragment implements AddFriends.DataL
         searchUserList.setAdapter(dataListAdapter);
         searchUserList.setOnItemClickListener((parent, view, position, id)->{
          //   Toast.makeText(getActivity(),users.get(position).getName(),Toast.LENGTH_SHORT).show();
-            AddUserEngine.SendRequest("mike","mike1",this);
+            AddUserEngine.SendRequest("mike",users.get(position).getName(),this);
         });
 
     }
@@ -73,7 +73,21 @@ public class SearchUserFragment extends ListFragment implements AddFriends.DataL
 
     @Override
     public void onResultFetched(int resultCode) {
-        Log.i("SearchUser",Integer.toString(resultCode));
+       // Log.i("SearchUser",Integer.toString(resultCode));
+        String info=null;
+        switch(resultCode){
+            case 1:info="Send request successfully";break;
+            case 2:info="You have already sent request before";break;
+            case 3:info="Send request successfully";break;
+            case 4:info="You are already friends";break;
+            case 5:info="Send request successfully";break;
+            case 6:info="You are friends now!";break;
+            case 7:info="You have been blocked";break;
+            case 8:info="You are already friends";break;
+            case 9:info="Send request succesfully";break;
+            default:break;
+        }
+        Toast.makeText(getActivity(),info,Toast.LENGTH_SHORT).show();
 
     }
 
