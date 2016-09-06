@@ -5,5 +5,5 @@ package com.example.mrdreamer.iknow;
  */
 public class Constants {
     public static final String PROTOCOL="http://";
-    public static final String  SERVER="192.168.1.103";
+    public static final String  SERVER="192.168.1.138";
 }

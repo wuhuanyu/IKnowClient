@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuItemImpl;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Interpolator;
+import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.AddUser.AddFriends;
@@ -17,6 +19,10 @@ import com.example.mrdreamer.iknow.Utils;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.service.XGPushService;
 
 /**
  * Created by stack on 8/21/16.
@@ -40,8 +46,26 @@ public class GetFriends extends AppCompatActivity{
         Utils.addFragmentToActivity(this,friendsFrag,R.id.friends_list_frag_container);
     //    listView=(ListView)findViewById(R.id.searchuser_list);
         setSupportActionBar(toolbar);
+        XGPushConfig.enableDebug(getApplicationContext(),true);
+        XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object o, int i) {
+                Log.i("PushService",XGPushConfig.getToken(getApplicationContext()));
 
+                Toast.makeText(getApplicationContext(),"success "+XGPushConfig.getToken(getApplicationContext()),Toast.LENGTH_SHORT).show();
 
+            }
+
+            @Override
+            public void onFail(Object o, int i, String s) {
+               Log.i("PushService",o.toString()+" failed");
+                Toast.makeText(getApplicationContext(),"failed  "+i,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        Intent service=new Intent(getApplicationContext(), XGPushService.class);
+
+        getApplicationContext().startService(service);
     }
 
 
