@@ -47,7 +47,7 @@ public class GetFriends extends AppCompatActivity{
     //    listView=(ListView)findViewById(R.id.searchuser_list);
         setSupportActionBar(toolbar);
         XGPushConfig.enableDebug(getApplicationContext(),true);
-        XGPushManager.registerPush(getApplicationContext(), new XGIOperateCallback() {
+        XGPushManager.registerPush(getApplicationContext(), "mike",new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {
                 Log.i("PushService",XGPushConfig.getToken(getApplicationContext()));
