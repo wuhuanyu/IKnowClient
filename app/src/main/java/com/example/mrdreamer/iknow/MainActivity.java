@@ -1,12 +1,9 @@
 package com.example.mrdreamer.iknow;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,8 +18,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.mrdreamer.iknow.AccountManage.LoginActivity2;
 import com.example.mrdreamer.iknow.GetQuestion.GetQuestionPresenter;
 import com.example.mrdreamer.iknow.GetQuestion.ShowQuesitonFragment;
 
@@ -158,7 +155,7 @@ private  Question question;
         return true;
     }
     public void login(){
-        Intent login_intent=new Intent(getApplicationContext(),com.example.mrdreamer.iknow.LoginActivity2.class);
+        Intent login_intent=new Intent(getApplicationContext(),LoginActivity2.class);
         startActivity(login_intent);
     }
 

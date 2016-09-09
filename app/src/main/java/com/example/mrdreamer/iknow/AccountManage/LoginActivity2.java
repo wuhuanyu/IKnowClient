@@ -1,4 +1,4 @@
-package com.example.mrdreamer.iknow;
+package com.example.mrdreamer.iknow.AccountManage;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.AccountManage.LoginTask;
 import com.example.mrdreamer.iknow.AccountManage.LogoutTask;
+import com.example.mrdreamer.iknow.R;
 
 /**
  * Created by mrdreamer on 05/08/16.

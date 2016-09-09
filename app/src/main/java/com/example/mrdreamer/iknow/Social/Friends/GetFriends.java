@@ -58,8 +58,8 @@ public class GetFriends extends AppCompatActivity{
 
             @Override
             public void onFail(Object o, int i, String s) {
-               Log.i("PushService",o.toString()+" failed");
-                Toast.makeText(getApplicationContext(),"failed  "+i,Toast.LENGTH_SHORT).show();
+            //   Log.i("PushService",o.toString()+" failed");
+             //   Toast.makeText(getApplicationContext(),"failed  "+i,Toast.LENGTH_SHORT).show();
 
             }
         });

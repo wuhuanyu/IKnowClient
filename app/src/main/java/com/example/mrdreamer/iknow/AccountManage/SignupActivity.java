@@ -1,4 +1,4 @@
-package com.example.mrdreamer.iknow;
+package com.example.mrdreamer.iknow.AccountManage;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mrdreamer.iknow.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

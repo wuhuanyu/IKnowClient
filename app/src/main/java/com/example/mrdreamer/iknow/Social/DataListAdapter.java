@@ -66,7 +66,7 @@ public class DataListAdapter extends ArrayAdapter<User>{
         }
         User user=users.get(position);
         holder.name.setText(user.getName());
-        holder.isLogin.setText(user.getIsLogIn());
+        holder.isLogin.setText(user.getIsLogInString());
         return convertView;
     }
 
