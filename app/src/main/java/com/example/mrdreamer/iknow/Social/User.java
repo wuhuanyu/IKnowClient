@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
 
 /**
@@ -44,25 +45,28 @@ public class User {
         return "User: Name: "+name+" isLogin: "+getIsLogInString()+" Info: "+info+"\n";
     }
 
-    public static User getUser(Activity activity){
-          SharedPreferences sharedPreferences=activity.getPreferences(Context.MODE_PRIVATE);
-        if(!sharedPreferences.contains(activity.getString(
-                R.string.sharedPrefrenceName
+    public static User getUser(){
+        Context context= IKnowApplication.getAppContext();
+          SharedPreferences sharedPreferences=context.getSharedPreferences(
+                  context.getString(R.string.preference),Context.MODE_PRIVATE);
+        if(!sharedPreferences.contains(context.getString(
+                R.string.preferenceName
         ))) return null;
-        String name=sharedPreferences.getString(activity.getString(R.string.sharedPrefrenceName),"noName");
+        String name=sharedPreferences.getString(context.getString(R.string.preferenceName),"noName");
        // if(sharedPreferences==null)return null;
-        boolean isLogin=sharedPreferences.getBoolean(activity.getString(R.string.sharedPrefrenceIsLogin),false);
-        String password=sharedPreferences.getString(activity.getString(R.string.sharedPrefrencePasswd),"noPassword");
+        boolean isLogin=sharedPreferences.getBoolean(context.getString(R.string.preferenceisLogin),false);
+        String password=sharedPreferences.getString(context.getString(R.string.preferencePassword),"noPassword");
         return new User(name,isLogin);
     }
 
-    public static boolean getUserIsLogin(Activity activity){
-   SharedPreferences sharedPreferences=activity.getPreferences(Context.MODE_PRIVATE);
-        if(!sharedPreferences.contains(activity.getString(
-                R.string.sharedPrefrenceName
+    public static boolean getUserIsLogin(){
+        Context context=IKnowApplication.getAppContext();
+   SharedPreferences sharedPreferences=context.getSharedPreferences(
+           context.getString(R.string.preference),Context.MODE_PRIVATE);
+        if(!sharedPreferences.contains(context.getString(
+                R.string.preferenceName
         ))) return false;
-
-        return  sharedPreferences.getBoolean(activity.getString(R.string.sharedPrefrenceIsLogin),false);
+        return  sharedPreferences.getBoolean(context.getString(R.string.preferenceisLogin),false);
     }
 
 }

@@ -12,7 +12,9 @@
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="is_login">islogin</string>
-    <string name="sharedPrefrenceName">username</string>
-    <string name="sharedPrefrencePasswd">password</string>
-    <string name="sharedPrefrenceIsLogin">isLogin</string>
+    <string name="preferenceName">username</string>
+    <string name="preferencePassword">password</string>
+    <string name="preferenceisLogin">isLogin</string>
+    <string name="preference">preference</string>
+
 </resources>
