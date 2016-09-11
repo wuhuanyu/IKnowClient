@@ -12,9 +12,11 @@ import android.view.MenuItem;
 import android.view.animation.Interpolator;
 import android.widget.Toast;
 
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.AddUser.AddFriends;
 import com.example.mrdreamer.iknow.Social.Injection;
+import com.example.mrdreamer.iknow.Social.User;
 import com.example.mrdreamer.iknow.Utils;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
@@ -47,7 +49,16 @@ public class GetFriends extends AppCompatActivity{
     //    listView=(ListView)findViewById(R.id.searchuser_list);
         setSupportActionBar(toolbar);
         XGPushConfig.enableDebug(getApplicationContext(),true);
-        XGPushManager.registerPush(getApplicationContext(), "mike",new XGIOperateCallback() {
+
+        User user=User.getUser();
+        String name=null;
+        if(!(user==null? false:user.getIsLoginBoolean())){
+
+            name="mike";
+
+        }
+        else name=user.getName();
+        XGPushManager.registerPush(getApplicationContext(), name,new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {
                 Log.i("PushService",XGPushConfig.getToken(getApplicationContext()));

@@ -25,6 +25,16 @@ android {
         }
     }
 }
+task nativeLibsToJar(type: Jar, description: 'create a jar archive of the native libs') {
+    destinationDir file("$buildDir/native-libs")
+    baseName 'native-libs'
+    from fileTree(dir: 'libs', include: '**/*.so')
+    into 'lib/'
+}
+
+tasks.withType(JavaCompile) {
+    compileTask -> compileTask.dependsOn(nativeLibsToJar)
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -40,4 +50,5 @@ dependencies {
     compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
     compile files('libs/json-simple-1.1.jar')
     compile files('libs/jg_filter_sdk_1.1.jar')
+    compile fileTree(dir: "$buildDir/native-libs", include: 'native-libs.jar')
 }

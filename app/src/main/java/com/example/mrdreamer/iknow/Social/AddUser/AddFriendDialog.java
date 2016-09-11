@@ -38,7 +38,7 @@ public class AddFriendDialog extends DialogFragment {
             textView.setText(name);
         }
 
-        User user= User.getUser(getActivity());
+        User user= User.getUser();
         builder.setView(view).setPositiveButton(
                 "SendRequest", (dialog, which) -> {
                    // if(user!=null)

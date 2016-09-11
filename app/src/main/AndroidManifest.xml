@@ -82,10 +82,13 @@
         <meta-data
             android:name="XG_V2_ACCESS_KEY"
             android:value="A3LA4Y1U9L5R" />
+        <receiver android:name=".Social.Friends.PKInvitationReceiver">
+
+        </receiver>
 
 
         <activity
-            android:name=".Social.Friends.GetFriends"
+            android:name=".MyTest"
             android:launchMode="singleTop"
             android:label=""
             android:theme="@style/AppTheme">
@@ -99,14 +102,22 @@
             </intent-filter>
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchuser_config"/>
-    </activity>
+        </activity>
         <activity android:name=".Social.AddUser.AddFriends"
             android:launchMode="singleTop">
 
         </activity>
-<activity android:name=".Social.Friends.RequestInfo">
+        <activity android:name=".Social.Friends.RequestInfo">
 
-</activity>
+
+        </activity>
+        <activity android:name=".Social.Friends.PKInvitation">
+            <intent-filter>
+                <action android:name="com.example.mrdreamer.iknow.Social.Friends.PKInvitation"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+
+        </activity>
     </application>
 
 
