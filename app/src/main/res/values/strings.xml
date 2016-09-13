@@ -17,4 +17,5 @@
     <string name="preferenceisLogin">isLogin</string>
     <string name="preference">preference</string>
 
+    <string name="login_alert">You have login first</string>
 </resources>

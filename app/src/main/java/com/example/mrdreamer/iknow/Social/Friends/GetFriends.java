@@ -36,10 +36,6 @@ public class GetFriends extends AppCompatActivity{
 
     @Override
     public void onCreate(Bundle savedInstanceState){
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_friendslist);
         Toolbar toolbar=(Toolbar)findViewById(R.id.search_bar);

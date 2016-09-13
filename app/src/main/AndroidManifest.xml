@@ -88,7 +88,7 @@
 
 
         <activity
-            android:name=".MyTest"
+            android:name=".Social.Friends.GetFriends"
             android:launchMode="singleTop"
             android:label=""
             android:theme="@style/AppTheme">
@@ -111,7 +111,10 @@
 
 
         </activity>
-        <activity android:name=".Social.Friends.PKInvitation">
+        <activity android:name=".Social.Friends.PKInvitation"
+            android:parentActivityName=".Social.Friends.GetFriends">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Social.Friends.GetFriends"/>
             <intent-filter>
                 <action android:name="com.example.mrdreamer.iknow.Social.Friends.PKInvitation"/>
                 <category android:name="android.intent.category.BROWSABLE"/>

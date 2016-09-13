@@ -67,25 +67,15 @@ public class GetFriendsFrag extends ListFragment implements Contract.View,SwipeR
         friendsListView.setTextFilterEnabled(true);
         friendsListView.setOnItemClickListener((parent,itemView,position,id)->{
 
-
+            PKInvitationDialog dialog=PKInvitationDialog.newInstance(friendsList.get(position).getName());
+            dialog.show(getFragmentManager(),"SendPKInvitation");
         });
-
-
-
-
-
-
         Log.i(getClass().getSimpleName(),friendsList.toString());
-
-
-
     }
 
     @Override
     public void onErrorHappened(String errorInfo) {
-
         infoTextView.setText(errorInfo);
-
     }
 
     @Override

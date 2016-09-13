@@ -1,11 +1,15 @@
 package com.example.mrdreamer.iknow.Social.Friends;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationBuilderWithBuilderAccessor;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.TaskStackBuilder;
 
 import com.example.mrdreamer.iknow.R;
 import com.tencent.android.tpush.XGPushBaseReceiver;
@@ -59,10 +63,24 @@ public class PKInvitationReceiver extends XGPushBaseReceiver {
        } catch (JSONException e) {
            e.printStackTrace();
        }
-        NotificationCompat.Builder builder=new NotificationCompat.Builder(Context)
+        NotificationCompat.Builder builder=new NotificationCompat.Builder(context)
 
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContent();
+                .setContentTitle("PK Invitation")
+                .setContentText(sender+" has sent you a PK Invitation");
+
+        Intent resultIntent=new Intent(context,PKInvitation.class);
+        TaskStackBuilder stackBuilder=TaskStackBuilder.create(context);
+        stackBuilder.addParentStack(PKInvitation.class);
+        stackBuilder.addNextIntent(resultIntent);
+
+        PendingIntent resultPendingIntent=stackBuilder.getPendingIntent(
+                0,PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        builder.setContentIntent(resultPendingIntent);
+        NotificationManager notificationManager=(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
+
 
     }
 
