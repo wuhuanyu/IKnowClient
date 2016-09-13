@@ -54,7 +54,7 @@ public class GetFriends extends AppCompatActivity{
 
         }
         else name=user.getName();
-        XGPushManager.registerPush(getApplicationContext(), name,new XGIOperateCallback() {
+        XGPushManager.registerPush(getApplicationContext(), "mike",new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {
                 Log.i("PushService",XGPushConfig.getToken(getApplicationContext()));

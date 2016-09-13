@@ -82,9 +82,15 @@
         <meta-data
             android:name="XG_V2_ACCESS_KEY"
             android:value="A3LA4Y1U9L5R" />
-        <receiver android:name=".Social.Friends.PKInvitationReceiver">
+        <receiver android:name=".Social.Friends.PKInvitationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE"/>
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK"/>
+            </intent-filter>
 
         </receiver>
+
 
 
         <activity

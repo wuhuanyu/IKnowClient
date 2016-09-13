@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationBuilderWithBuilderAccessor;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 import com.example.mrdreamer.iknow.R;
 import com.tencent.android.tpush.XGPushBaseReceiver;
@@ -58,7 +59,12 @@ public class PKInvitationReceiver extends XGPushBaseReceiver {
            JSONObject jsonObject=new JSONObject(customContent);
 
            if(!jsonObject.isNull("sender")){
-
+               sender=jsonObject.getString("sender");
+               Log.i(getClass().getSimpleName(),sender);
+           }
+           if(!jsonObject.isNull("room")){
+               room=jsonObject.getString("room");
+               Log.i(getClass().getSimpleName(),room);
            }
        } catch (JSONException e) {
            e.printStackTrace();
@@ -70,6 +76,11 @@ public class PKInvitationReceiver extends XGPushBaseReceiver {
                 .setContentText(sender+" has sent you a PK Invitation");
 
         Intent resultIntent=new Intent(context,PKInvitation.class);
+
+        Bundle bundle=new Bundle();
+        bundle.putString("sender",sender);
+        bundle.putString("room",room);
+        resultIntent.putExtras(bundle);
         TaskStackBuilder stackBuilder=TaskStackBuilder.create(context);
         stackBuilder.addParentStack(PKInvitation.class);
         stackBuilder.addNextIntent(resultIntent);
