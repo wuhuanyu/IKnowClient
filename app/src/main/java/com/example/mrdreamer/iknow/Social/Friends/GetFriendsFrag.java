@@ -7,19 +7,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.DataListAdapter;
-import com.example.mrdreamer.iknow.Social.DataSource.DataSource;
 import com.example.mrdreamer.iknow.Social.User;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by stack on 8/22/16.
@@ -83,9 +79,6 @@ public class GetFriendsFrag extends ListFragment implements Contract.View,SwipeR
 
         // infoTextView.setText("No Friends Yet");
     }
-
-
-
     @Override
     public void onRefresh() {
         // Toast.makeText(getActivity(),"swipe",Toast.LENGTH_SHORT).show();
