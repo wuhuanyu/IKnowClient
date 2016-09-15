@@ -1,6 +1,10 @@
 package com.example.mrdreamer.iknow.AccountManage;
 
 import android.content.Context;
+import android.widget.Toast;
+
+import com.example.mrdreamer.iknow.IKnowApplication;
+import com.example.mrdreamer.iknow.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,9 +26,7 @@ public class SignUpTask extends AccountAbstract{
   //      void onSignUp();
   //  }
 
-  //  private onSignUpSuccessfully
-
-
+  //  private onSignUpSuccessfully;
     public SignUpTask(Context context){
        super(context) ;
     }
@@ -40,7 +42,6 @@ public class SignUpTask extends AccountAbstract{
             writer.write(data);
             writer.flush();
             writer.close();
-
             reader=new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder builder=new StringBuilder();
             String line=null;
@@ -54,7 +55,6 @@ public class SignUpTask extends AccountAbstract{
             return e.getMessage();
 
         } catch (IOException e) {
-        //    e.printStackTrace();
             return e.getMessage();
         }
     }
@@ -69,12 +69,7 @@ public class SignUpTask extends AccountAbstract{
             JSONObject jsonObject=jsonArray.getJSONObject(0);
             info=jsonObject.getString("info");
             success=jsonObject.getBoolean("result_bool");
-            if(success){
-
-            }
-
-
-
+        Utils.makeToast(IKnowApplication.getAppContext(),info);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -31,12 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         
-        _loginButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                login();
-            }
+        _loginButton.setOnClickListener((v)->{
+           // AccountManage.performTask(AccountManage.Task.LOG_IN,);
         });
 
         _signupLink.setOnClickListener(new View.OnClickListener() {

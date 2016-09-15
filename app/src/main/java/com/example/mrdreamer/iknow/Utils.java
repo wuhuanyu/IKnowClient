@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.Social.User;
 
@@ -31,6 +32,11 @@ public class Utils {
 
     public static class Pair{
 
+    }
+
+
+    public static void makeToast(Context context,String string){
+        Toast.makeText(context,string,Toast.LENGTH_SHORT).show();
     }
 //    public static User getUser(Activity activity){
 //

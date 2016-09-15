@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.Social.Friends.DataSourceRepository;
 import com.example.mrdreamer.iknow.Social.DataSource.DB.DBHelper;
 import com.example.mrdreamer.iknow.Social.DataSource.DB.DataPersistenceContract;
@@ -44,6 +46,12 @@ public class RemoteDataSource implements DataSource{
     }
     @Override
     public void getData(LoadDataCallback callback) {
+        User user=User.getUser();
+        if(user==null? true:!user.getIsLoginBoolean()){
+            com.example.mrdreamer.iknow.Utils.makeToast(IKnowApplication.getAppContext(),"Login first please");
+            return;
+        }
+
         ArrayList<User> users=new ArrayList<>();
 
         new AsyncTask<String, Void, String>(){
@@ -112,7 +120,7 @@ public class RemoteDataSource implements DataSource{
 
                 }
             }
-        }.execute("mike","why");
+        }.execute(user.getName(),user.getPassword());
     }
     @Override
     public void refreshData() {

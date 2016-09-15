@@ -4,9 +4,11 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.UiThread;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,10 +21,12 @@ import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.Constants;
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.DataListAdapter;
 import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +71,7 @@ public class SearchUserFragment extends ListFragment implements AddFriends.DataL
             //dialog.setNameClicked(users.get(position).getName());
             //dialog.show(getFragmentManager(),"info");
             AddFriendDialog dialog=AddFriendDialog.newInstance(users.get(position).getName());
+            Log.i(getClass().getSimpleName(),users.get(position).getName());
             dialog.show(getFragmentManager(),"Info");
         });
 
@@ -95,7 +100,14 @@ class AddUserEngine{
     }
     private static final String SEND_REQUEST_LINK= Constants.PROTOCOL+Constants.SERVER+"/send_request.php";
     private static final String METHOD="POST";
-    public static void SendRequest(String actionUserName,String anotherName,GetResultCallBack callBack){
+    public static void SendRequest(String anotherName,GetResultCallBack callBack){
+        User user= User.getUser();
+        if(user==null? true:!user.getIsLoginBoolean()){
+            Context context=IKnowApplication.getAppContext();
+            Utils.makeToast(context,context.getString(R.string.login_alert));
+            return;
+
+        }
            new AsyncTask<String,Void,String>(){
                 private HttpURLConnection connection;
                @Override
@@ -103,7 +115,8 @@ class AddUserEngine{
                    try {
                        connection= ConnectionUtils.getConnection(SEND_REQUEST_LINK,METHOD);
                        BufferedWriter writer=new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
-                       String data="user_one_name="+params[0]+"&user_two_name="+params[1];
+                       String data="user_one_name="+user.getName()+"&user_two_name="+params[0];
+                       Log.i(getClass().getSimpleName(),data);
                        writer.write(data);
                        writer.flush();
                        writer.close();
@@ -115,15 +128,16 @@ class AddUserEngine{
                             builder.append(line);
                        }
                        reader.close();
+                       Log.i("AddUserEngine",builder.toString());
                        return builder.toString();
 
                    } catch (Exception e) {
                        e.printStackTrace();
-                       Log.e("AddUserEngine Error","Error"+e.getMessage()) ;
+                       Log.e("AddFriendEngine Error","Error"+e.getMessage()) ;
                        return "error: "+e.getMessage();
                    }
                    finally {
-                       if(connection==null)
+                       if(connection!=null)
                            connection.disconnect();
                    }
 
@@ -131,7 +145,8 @@ class AddUserEngine{
                }
                @Override
                protected void onPostExecute(String result){
-                   int resultCode=-1;
+                 //  int resultCode=-1;
+                   Log.i(getClass().getSimpleName(),result);
                    if(result.contains("error")){
                        callBack.onNoResultFetched(result);
                        return;
@@ -140,17 +155,19 @@ class AddUserEngine{
                        callBack.onNoResultFetched("No Result");
                    }
                    try {
-                       JSONObject jsonRootObeject=new JSONObject(result);
-                        resultCode=jsonRootObeject.getInt("result_code");
+                      //JSONObject jsonRootObeject=new JSONObject(result);
+                      Integer resultCode=Integer.parseInt(result);
+                       callBack.onResultFetched(resultCode);
+                     //   resultCode=jsonRootObeject.getInt("result_code");
                       // JSONArray jsonArray=jsonRootObeject.optJSONArray("result_code");
                       // JSONObject jsonObject=jsonArray.getJSONObject(0);
                       // int resultCode=jsonObject.getInt("")
-                   } catch (JSONException e) {
+                   } catch (Exception e) {
                        Log.e("AddUserEngin Error","Error"+e.getMessage());
                        callBack.onNoResultFetched("error :"+e.getMessage());
                    }
-                   callBack.onResultFetched(resultCode);
+                  // callBack.onResultFetched(resultCode);
                }
-           }.execute(actionUserName,anotherName);
+           }.execute(anotherName);
     }
 }

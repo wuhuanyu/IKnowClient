@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
+import com.example.mrdreamer.iknow.Social.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,16 +29,8 @@ public class LogoutTask extends AccountAbstract{
     public LogoutTask(Context context){
         super(context);
     }
-
-
     @Override
     protected String doInBackground(String... args) {
-
-
-
-
-
-
         try{
             HttpURLConnection connection=ConnectionUtils.getConnection(link,"POST");
             name=args[0];
@@ -46,7 +40,6 @@ public class LogoutTask extends AccountAbstract{
             writer.write(data);
             writer.flush();
             writer.close();
-
             reader=new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder builder=new StringBuilder();
             String line=null;
@@ -55,17 +48,10 @@ public class LogoutTask extends AccountAbstract{
             }
             reader.close();
             return builder.toString();
-
-
-
         }catch(IOException e){
             return e.getMessage();
         }
-
-
-
     }
-
     @Override
     protected void onPostExecute(String result) {
         boolean success=false;
@@ -77,32 +63,15 @@ public class LogoutTask extends AccountAbstract{
             JSONObject jsonObject=jsonArray.getJSONObject(0);
             info=jsonObject.getString("info").toString();
             success=jsonObject.getBoolean("result_bool");
-
         }catch (JSONException e){
-
             toast_str=e.getMessage();
-
         }
         if(success){
-            toast_str="Logout Successfully";
-            SharedPreferences sharedPreferences=((Activity)context).getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putBoolean(context.getString(R.string.is_login),false);
-            editor.commit();
+            User.setUser(new User(name,"",password,false));
+    //       Toast.makeText(IKnowApplication.getAppContext(),"Logout Successfully",Toast.LENGTH_SHORT).show();
         }else{
             toast_str+=" LogOut failed";
-
         }
-
         Toast.makeText(context,info,Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
-
-
     }
 }

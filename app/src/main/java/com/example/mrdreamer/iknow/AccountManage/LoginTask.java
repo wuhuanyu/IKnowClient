@@ -2,12 +2,19 @@ package com.example.mrdreamer.iknow.AccountManage;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
+import com.example.mrdreamer.iknow.Social.User;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.service.XGPushService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,15 +35,10 @@ import java.net.URL;
  * Created by mrdreamer on 05/08/16.
  */
 public class LoginTask extends AccountAbstract{
-    // private Context context;
-    // private String link;
-    // private static String TAG="log";
-    // private String name;
-    // private String password;
-    public LoginTask(Context context){
-        // this.context=context;
-        // this.link="http://192.168.1.102/account_manage.php";
+        HttpURLConnection connection;
+    public LoginTask(Context context) throws IOException {
         super(context);
+        this.connection=ConnectionUtils.getConnection(link,"POST");
 
     }
 
@@ -46,7 +48,7 @@ public class LoginTask extends AccountAbstract{
     public String doInBackground(String... args)
     {  try{
 
-        HttpURLConnection connection=ConnectionUtils.getConnection(link,"POST");
+
         //  connection.connect();
         name=args[0];
         password=args[1];
@@ -70,9 +72,6 @@ public class LoginTask extends AccountAbstract{
             builer.append(line);
 
         }
-        // reader.close();
-        // Log.i("result",name+" "+password+" "+builer.toString());
-        // connection.disconnect();
         reader.close();
         return builer.toString();
     }catch(MalformedURLException e){
@@ -80,42 +79,28 @@ public class LoginTask extends AccountAbstract{
     }catch(IOException e){
         return e.getMessage();
     }
+        finally {
+
     }
-
-
-
-
+    }
     public void onPostExecute(String result){
         boolean success=false;
         String info="";
-        //JSONObject jsonObject=new JSONObject(result);
-
         try{
-
             JSONObject jsonRootObject=new JSONObject(result);
-            //JSONArray jsonArray=jsonObject.getJSONArray("result");
             JSONArray jsonArray=jsonRootObject.optJSONArray("result");
-
             JSONObject jsonObject=jsonArray.getJSONObject(0);
-
             success=Boolean.parseBoolean(jsonObject.optString("result_bool").toString());
             info=jsonObject.optString("info").toString();
 
         }catch (JSONException e){
             Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-
-
-        //JSONParser parser=new JSONParser();
-
         if(success)
         {
-            SharedPreferences sharedPreferences=((Activity)context).getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor=sharedPreferences.edit();
-            editor.putString(context.getString(R.string.username),name);
-            editor.putString(context.getString(R.string.password),password);
-            editor.putBoolean(context.getString(R.string.is_login),success);
-            editor.commit();
+            User user=new User(name,true);
+            User.setUser(user);
+            registerUser(user);
 
             Toast.makeText(context,info,Toast.LENGTH_SHORT).show();
         }
@@ -125,10 +110,32 @@ public class LoginTask extends AccountAbstract{
 
 
     }
+    private void registerUser(User user){
+        if(user==null){
+            return;
+        }
+           XGPushConfig.enableDebug(IKnowApplication.getAppContext(),true);
 
+        XGPushManager.registerPush(IKnowApplication.getAppContext(), user.getName(),new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object o, int i) {
+                Log.i("PushService",XGPushConfig.getToken(IKnowApplication.getAppContext()));
 
+                Toast.makeText(IKnowApplication.getAppContext(),"success "+ XGPushConfig.getToken(IKnowApplication.getAppContext()),Toast.LENGTH_SHORT).show();
 
+            }
 
+            @Override
+            public void onFail(Object o, int i, String s) {
+            //   Log.i("PushService",o.toString()+" failed");
+             //   Toast.makeText(getApplicationContext(),"failed  "+i,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        Intent service=new Intent(IKnowApplication.getAppContext(), XGPushService.class);
+
+        IKnowApplication.getAppContext().startService(service);
+    }
 
 }
 

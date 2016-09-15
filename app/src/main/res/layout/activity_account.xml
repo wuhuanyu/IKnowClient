@@ -6,30 +6,39 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login2_name_edit"
+        android:id="@+id/activity_account_name_edit"
 
         android:hint="@string/login2_name_edit_hint"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login2_name_edit"
+        android:layout_below="@id/activity_account_name_edit"
         android:hint="@string/login2_passwd_edit_hint"
-        android:id="@+id/login2_passwd_edit"/>
-    <Button android:layout_below="@id/login2_passwd_edit"
+        android:id="@+id/activity_account_password_edit"/>
+
+
+
+    <Button android:layout_below="@id/activity_account_password_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/login2_login_btn"
-        android:onClick="login"
+        android:id="@+id/activity_account_login_btn"
+
         android:text="@string/login2_login_btn_text"/>
     <Button style="@style/CommonBtn"
-        android:id="@+id/logout_btn"
+        android:id="@+id/activity_account_logout_btn"
         android:text="Logout"
-        android:layout_below="@id/login2_login_btn">
+        android:layout_below="@id/activity_account_login_btn">
     </Button>
     <Button
         style="@style/CommonBtn"
-        android:id="@+id/btn_signup"
-        android:layout_below="@id/btn_signup"
+        android:id="@+id/activity_account_signup_btn"
+        android:layout_below="@id/activity_account_logout_btn"
         android:text="SignUp"></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_account_test_btn"
+        android:layout_below="@id/activity_account_signup_btn"
+        android:text="Test"/>
 </RelativeLayout>
 

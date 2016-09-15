@@ -19,9 +19,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.mrdreamer.iknow.AccountManage.LoginActivity2;
+import com.example.mrdreamer.iknow.AccountManage.Account;
 import com.example.mrdreamer.iknow.GetQuestion.GetQuestionPresenter;
 import com.example.mrdreamer.iknow.GetQuestion.ShowQuesitonFragment;
+import com.example.mrdreamer.iknow.Social.Friends.GetFriends;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -126,12 +127,18 @@ private  Question question;
             case R.id.nav_history:{}
             case R.id.nav_math:{}
             case R.id.nav_astronomy:{}
-            case R.id.nav_login:{login();
 
-
-
+            case R.id.nav_account:{
+                Intent intent=new Intent(this,Account.class);
+                startActivity(intent);
             }
-            case R.id.nav_logout:{}
+            break;
+            case R.id.nav_friend_list:{
+                Intent intent=new Intent(this, GetFriends.class);
+                startActivity(intent);
+            }
+            break;
+          //  case R.id.nav_logout:{}
             case R.id.nav_share:{}
             case R.id.nav_send:{}
         }
@@ -155,7 +162,7 @@ private  Question question;
         return true;
     }
     public void login(){
-        Intent login_intent=new Intent(getApplicationContext(),LoginActivity2.class);
+        Intent login_intent=new Intent(getApplicationContext(),Account.class);
         startActivity(login_intent);
     }
 

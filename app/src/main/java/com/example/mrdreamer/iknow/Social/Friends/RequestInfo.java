@@ -1,6 +1,7 @@
 package com.example.mrdreamer.iknow.Social.Friends;
 
 import android.app.ListFragment;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,9 @@ import android.widget.TextView;
 import com.example.mrdreamer.iknow.AccountManage.AccountAbstract;
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.Constants;
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
+import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.RequestInfoAdapter;
 import com.example.mrdreamer.iknow.Social.User;
 import com.example.mrdreamer.iknow.Utils;
@@ -41,7 +44,6 @@ public class RequestInfo extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requestinfo);
         Utils.addFragmentToActivity(this,new RequestInfoFragment(),R.id.request_info_fragment_container);
-
 
     }
 
@@ -104,8 +106,16 @@ class GetRequestInfoDataSource{
  }
 
     public static void getRequestInfo(LoadDataCallback callback){
+              User user=User.getUser();
+        if(user==null? true:!user.getIsLoginBoolean()){
+            Context context=IKnowApplication.getAppContext();
 
+            Utils.makeToast(context,context.getString(R.string.login_alert));
+            return;
+        }
         new AsyncTask<String,Void,String>(){
+           // User user=User.getUser();
+
 
             @Override
             protected String doInBackground(String... params) {
@@ -182,7 +192,7 @@ class GetRequestInfoDataSource{
 
 
             }
-        }.execute("mike","why");
+        }.execute(user.getName(),user.getPassword());
     }
 
 

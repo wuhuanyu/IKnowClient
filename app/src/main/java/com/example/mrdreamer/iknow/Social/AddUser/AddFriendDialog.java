@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.GetQuestion.Contract;
+import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.DataSource.Utils;
 import com.example.mrdreamer.iknow.Social.User;
@@ -42,11 +43,7 @@ public class AddFriendDialog extends DialogFragment {
         builder.setView(view).setPositiveButton(
                 "SendRequest", (dialog, which) -> {
                    // if(user!=null)
-                    if(!(user==null? false:user.getIsLoginBoolean())){
-                        Toast.makeText(getActivity(),"You have to Login first",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        AddUserEngine.SendRequest(user.getName(), name, new AddUserEngine.GetResultCallBack() {
+                        AddUserEngine.SendRequest( name, new AddUserEngine.GetResultCallBack() {
                             @Override
                             public void onResultFetched(int resultCode) {
                                 String info=null;
@@ -60,16 +57,17 @@ public class AddFriendDialog extends DialogFragment {
                                     case 7:info="You have been blocked";break;
                                     case 8:info="You are already friends";break;
                                     case 9:info="Send request succesfully";break;
-                                    case -1:info="You cannot send request to yourself";
+                                    case -1:info="You cannot send request to yourself";break;
                                     default:break;
                                 }
-                                Toast.makeText(getActivity(),info,Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(getActivity(),info,Toast.LENGTH_SHORT).show();
+                                com.example.mrdreamer.iknow.Utils.makeToast(IKnowApplication.getAppContext(),info);
                             }
                             @Override
                             public void onNoResultFetched(String info) {
                             }
                         });
-                    }
+
                 }
         ).setNegativeButton("Cancel", (dialog, which) -> {
             AddFriendDialog.this.getDialog().cancel();

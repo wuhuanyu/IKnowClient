@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 
 import com.example.mrdreamer.iknow.Constants;
 import com.example.mrdreamer.iknow.Constants.*;
+import com.example.mrdreamer.iknow.Social.User;
 
 /**
  * Created by stack on 16-8-16.

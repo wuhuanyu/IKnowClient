@@ -94,20 +94,28 @@
 
 
         <activity
-            android:name=".Social.Friends.GetFriends"
-            android:launchMode="singleTop"
-            android:label=""
+            android:name=".MainActivity"
+
+            android:label="IKnow"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchuser_config"/>
+
+        </activity>
+        <activity android:name=".AccountManage.Account"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity android:name=".Social.Friends.GetFriends"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
         </activity>
         <activity android:name=".Social.AddUser.AddFriends"
             android:launchMode="singleTop">
