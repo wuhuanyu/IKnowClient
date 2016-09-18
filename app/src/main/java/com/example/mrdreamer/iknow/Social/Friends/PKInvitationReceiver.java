@@ -26,6 +26,7 @@ import org.json.JSONObject;
  * Created by stack on 9/11/16.
  */
 public class PKInvitationReceiver extends XGPushBaseReceiver {
+    private static final int TARGET_CODE=0;
 
     @Override
     public void onRegisterResult(Context context, int i, XGPushRegisterResult xgPushRegisterResult) {
@@ -49,6 +50,7 @@ public class PKInvitationReceiver extends XGPushBaseReceiver {
 
     @Override
     public void onTextMessage(Context context, XGPushTextMessage xgPushTextMessage) {
+     //   Log.i(getClass().getSimpleName(),xgPushTextMessage.getCustomContent());
         if(context==null||xgPushTextMessage==null)return;
         String customContent=xgPushTextMessage.getCustomContent();
 
@@ -57,6 +59,10 @@ public class PKInvitationReceiver extends XGPushBaseReceiver {
        try{
 
            JSONObject jsonObject=new JSONObject(customContent);
+           if(!jsonObject.isNull("target_code")){
+               int target=jsonObject.getInt("target_code");
+               if(target!=TARGET_CODE) return;
+           }
 
            if(!jsonObject.isNull("sender")){
                sender=jsonObject.getString("sender");

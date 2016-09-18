@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <!-- 【可选】 信鸽SDK所需权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
@@ -83,6 +84,14 @@
             android:name="XG_V2_ACCESS_KEY"
             android:value="A3LA4Y1U9L5R" />
         <receiver android:name=".Social.Friends.PKInvitationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE"/>
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK"/>
+            </intent-filter>
+
+        </receiver>
+        <receiver android:name=".GetQuestion.Receiver.GetQuestionReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE"/>

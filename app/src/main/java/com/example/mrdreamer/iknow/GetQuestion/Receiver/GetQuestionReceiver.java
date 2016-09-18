@@ -2,6 +2,7 @@ package com.example.mrdreamer.iknow.GetQuestion.Receiver;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 
 import com.tencent.android.tpush.XGPushBaseReceiver;
 import com.tencent.android.tpush.XGPushClickedResult;
@@ -16,10 +17,11 @@ import org.json.JSONObject;
  * Created by mrdreamer on 16-9-15.
  */
 public class GetQuestionReceiver extends XGPushBaseReceiver {
-   private final Handler handler;
+  // private final Handler handler;
+    private static final int  TARGET_CODE=1;
 
-    public GetQuestionReceiver(Handler handler){
-        this.handler=handler;
+    public GetQuestionReceiver(){
+      //  this.handler=handler;
 
     }
     @Override
@@ -47,19 +49,23 @@ public class GetQuestionReceiver extends XGPushBaseReceiver {
         JSONObject jsonObject=null;
         String customObject=xgPushTextMessage.getCustomContent();
         try{
+
              jsonObject=new JSONObject(customObject);
-            if(jsonObject==null)
-                throw new JSONException("Data Error");
+           if(!jsonObject.isNull("target_code")) {
+               int target=jsonObject.getInt("target_code");
+
+               if(target!=TARGET_CODE)return;
+             //  Log.i()
+           }
+
+
             String content=jsonObject.getString("content");
             String ans_a=jsonObject.getString("ans_a");
             String ans_b=jsonObject.getString("ans_b");
             String ans_c=jsonObject.getString("ans_c");
             String ans_d=jsonObject.getString("ans_d");
             int rightIndex=jsonObject.getInt("right_index");
-
-
-
-
+            Log.i(getClass().getSimpleName(),ans_a);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1,9 +1,14 @@
 package com.example.mrdreamer.iknow;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -25,10 +30,12 @@ import com.example.mrdreamer.iknow.GetQuestion.ShowQuesitonFragment;
 import com.example.mrdreamer.iknow.Social.Friends.GetFriends;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener , ActivityCompat.OnRequestPermissionsResultCallback{
 
 
 private  Question question;
+
+    private static final int  PERMISSIONS_REQUEST_READ_PHONE_STATE=1;
     private boolean isLogin=false;
     private QuestionFragment questionFragment;
     private ShowQuesitonFragment showQuesitonFragment;
@@ -37,10 +44,7 @@ private  Question question;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        question=Question.getQuestionAndAnswer();
-//         question=Question.getQuestionAndAnswer();
 
-     // changeQuestion();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,30 +64,33 @@ private  Question question;
 
         showQuesitonFragment=new ShowQuesitonFragment();
         new GetQuestionPresenter(showQuesitonFragment);
-     //   FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+
         Utils.addFragmentToActivity(this,showQuesitonFragment,R.id.question_frame);
+
+
+      //  int permissionCheck= ContextCompat.checkSelfPermission(IKnowApplication.getAppContext(),
+       //         Manifest.permission.READ_PHONE_STATE);
+        //ActivityCompat.requestPermissions(this,Utils.Constants.PERMISSIONS,PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                //new String[]{Manifest.permission.READ_PHONE_STATE},
+                //PERMISSIONS_REQUEST_READ_PHONE_STATE);
+
 
 
 
 
     }
 
-//    public void changeQuestion(){
-//
-//        this.question=Question.getQuestionAndAnswer();
-//
-//
-//         questionFragment=new QuestionFragment();
-//        questionFragment.setQuestion(this.question);
 
-//        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-
- //       transaction.add(R.id.fragment_container,this.questionFragment).commit();
-
-
-
-
-  //  }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[],int[] grantResults){
+        switch(requestCode){
+            case PERMISSIONS_REQUEST_READ_PHONE_STATE:{
+                if(grantResults.length>0){}
+            }
+            break;
+            default:break;
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -104,12 +111,10 @@ private  Question question;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_settings) {
             return true;
         }
@@ -143,19 +148,6 @@ private  Question question;
             case R.id.nav_send:{}
         }
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
