@@ -37,7 +37,7 @@ private  Question question;
 
     private static final int  PERMISSIONS_REQUEST_READ_PHONE_STATE=1;
     private boolean isLogin=false;
-    private QuestionFragment questionFragment;
+    //private QuestionFragment questionFragment;
     private ShowQuesitonFragment showQuesitonFragment;
     public boolean isLogin(){return isLogin;}
     @Override
@@ -159,36 +159,39 @@ private  Question question;
     }
 
 
-    public static class QuestionFragment extends Fragment{
-        private Question question_frag;
-        public void setQuestion(Question q){
-            question_frag=q;
+   // public static class QuestionFragment extends Fragment{
+   //   private Question question_frag;
 
-        }
+   //     public RadioGroup getAnsGroup(){
 
-        public RadioGroup getAnsGroup(){
+   //         return (RadioGroup)(getView().findViewById(R.id.group));
+   //     }
+   //     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+   //     {
+   //         View view=inflater.inflate(R.layout.question,container,false);
 
-            return (RadioGroup)(getView().findViewById(R.id.group));
-        }
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
-        {
-            View view=inflater.inflate(R.layout.question,container,false);
-            TextView question_text=(TextView)view.findViewById(R.id.question_textview);
-            question_text.setText(question_frag.getQuestion());
-             Log.i("log",question_frag.getQuestion());
-       RadioButton ans_a=(RadioButton)(view.findViewById(R.id.a_radio));
-            ans_a.setText(question_frag.getAns_a());
-
-          RadioButton ans_b=(RadioButton)(view.findViewById(R.id.b_radio));
-            ans_b.setText(question_frag.getAns_b());
-
-        RadioButton ans_c=(RadioButton)(view.findViewById(R.id.c_radio));
-            ans_c.setText(question_frag.getAns_c());
-            RadioButton ans_d=(RadioButton)(view.findViewById(R.id.d_radio));
+   //         return view;
+   //     }
 
 
-            ans_d.setText(question_frag.getAns_d());
-            return view;
-        }
-    }
+   //     private void setQuestion(Question question,View view){
+
+   //           TextView question_text=(TextView)view.findViewById(R.id.question_textview);
+   //         question_text.setText(question_frag.getQuestion());
+   //          Log.i("log",question_frag.getQuestion());
+
+   //    RadioButton ans_a=(RadioButton)(view.findViewById(R.id.a_radio));
+   //         ans_a.setText(question_frag.getAns_a());
+
+   //       RadioButton ans_b=(RadioButton)(view.findViewById(R.id.b_radio));
+   //         ans_b.setText(question_frag.getAns_b());
+
+   //     RadioButton ans_c=(RadioButton)(view.findViewById(R.id.c_radio));
+   //         ans_c.setText(question_frag.getAns_c());
+   //         RadioButton ans_d=(RadioButton)(view.findViewById(R.id.d_radio));
+
+
+           // ans_d.setText(question_frag.getAns_d());
+       // }
+   // }
 }

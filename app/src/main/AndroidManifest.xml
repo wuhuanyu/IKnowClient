@@ -91,14 +91,6 @@
             </intent-filter>
 
         </receiver>
-        <receiver android:name=".GetQuestion.Receiver.GetQuestionReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE"/>
-                <action android:name="com.tencent.android.tpush.action.FEEDBACK"/>
-            </intent-filter>
-
-        </receiver>
 
 
 

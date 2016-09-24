@@ -13,6 +13,9 @@ import com.example.mrdreamer.iknow.R;
 public class User {
     private String name,info,password;
     private boolean isLogin=false;
+    private boolean isPKMode=false;
+
+
     public User(String name,String info,String password,boolean isLogin){
         this.info=info;
         this.name=name;
@@ -31,6 +34,7 @@ public class User {
     public String getName(){
         return name;
     }
+
 
     public String getIsLogInString(){
         if(isLogin) return "Online";
@@ -52,6 +56,15 @@ public class User {
         return this.password;
     }
 
+
+    public void setIsPKMode(boolean isPKMode){
+        this.isPKMode=isPKMode;
+    }
+
+    public boolean getIsPKMode(){
+        return this.isPKMode;
+    }
+
     public static User getUser(){
         Context context= IKnowApplication.getAppContext();
           SharedPreferences sharedPreferences=context.getSharedPreferences(
@@ -63,7 +76,11 @@ public class User {
        //if(sharedPreferences==null)return null;
         boolean isLogin=sharedPreferences.getBoolean(context.getString(R.string.preferenceisLogin),false);
         String password=sharedPreferences.getString(context.getString(R.string.preferencePassword),"noPassword");
-        return new User(name,"",password,isLogin);
+        boolean isPKMode=sharedPreferences.getBoolean(context.getString(R.string.preferenceidPKMode),false);
+    //    return new User(name,"",password,isLogin);
+        User user=new User(name,"",password,isLogin);
+        user.setIsPKMode(isPKMode);
+        return user;
     }
 
 
@@ -78,6 +95,7 @@ public class User {
         editor.putString(context.getString(R.string.preferenceName),user.getName());
         editor.putString(context.getString(R.string.preferencePassword),user.getName());
         editor.putBoolean(context.getString(R.string.preferenceisLogin),user.getIsLoginBoolean());
+        editor.putBoolean(context.getString(R.string.preferenceidPKMode),user.getIsPKMode());
 
         editor.commit();
     }
@@ -90,6 +108,11 @@ public class User {
                 R.string.preferenceName
         ))) return false;
         return  sharedPreferences.getBoolean(context.getString(R.string.preferenceisLogin),false);
+    }
+
+
+    interface IKnowMode{
+        void  FetchQuestion();
     }
 
 }

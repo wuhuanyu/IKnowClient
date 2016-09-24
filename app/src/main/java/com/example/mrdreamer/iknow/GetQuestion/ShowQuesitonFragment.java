@@ -1,7 +1,11 @@
 package com.example.mrdreamer.iknow.GetQuestion;
 
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
@@ -13,12 +17,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mrdreamer.iknow.GetQuestion.Receiver.GetQuestionReceiver;
 import com.example.mrdreamer.iknow.Question;
 import com.example.mrdreamer.iknow.R;
+import com.example.mrdreamer.iknow.Social.User;
 
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
+import java.io.InterruptedIOException;
 import java.sql.BatchUpdateException;
 
 /**
@@ -31,10 +38,17 @@ public class ShowQuesitonFragment extends Fragment implements Contract.View {
     private TextView question_text;
     private Question question;
     private RadioGroup radioGroup;
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        QuestionHandler handler=new QuestionHandler(this);
+
+        BroadcastReceiver getQuesitonReceiver=new GetQuestionReceiver(handler);
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(GetQuestionReceiver.ACTION_1);
+    filter.addAction(GetQuestionReceiver.ACTION_2);
+        getActivity().registerReceiver(getQuesitonReceiver,filter);
+
     }
 
 
@@ -52,7 +66,6 @@ public class ShowQuesitonFragment extends Fragment implements Contract.View {
         FloatingActionButton floatingActionButton=(FloatingActionButton)getActivity().findViewById(R.id.next_quesiton_fab);
         floatingActionButton.setOnClickListener((v)->{
             String result=null;
-
             for(int i=0;i<radioGroup.getChildCount();i++){
                 RadioButton rd=(RadioButton)radioGroup.getChildAt(i);
                 if(rd.isChecked()){
@@ -63,28 +76,14 @@ public class ShowQuesitonFragment extends Fragment implements Contract.View {
                 }
             }
             Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
-         //   if(Question.isAnswerRight())
-
-
-
-
-
-            Log.i(getClass().getSimpleName(),"TabClicked");
-            presenter.getQuesiton();
+        //    Log.i(getClass().getSimpleName(),"TabClicked");
+       //     presenter.getQuesiton();
         });
 
-        presenter.getQuesiton();
-
-
-
+        //presenter.getQuesiton();
 
         return root;
     }
-
-
-
-
-
 
     @Override
     public void setQuestion(Question q) {
@@ -100,5 +99,34 @@ public class ShowQuesitonFragment extends Fragment implements Contract.View {
     @Override
     public void setPresenter(Contract.Presenter p) {
         this.presenter=p;
+    }
+
+    private static class FetchNewQuestionEngine{
+        public static void FetchNewQuestion(User user){
+
+        }
+    }
+
+
+    private  static class QuestionHandler extends Handler {
+        private Contract.View view;
+        public QuestionHandler(Contract.View v){
+            this.view=v;
+        }
+        @Override
+        public void handleMessage(Message message){
+            Bundle bundle=message.getData();
+            String content=bundle.getString("content");
+            String ans_a=bundle.getString("ans_a");
+            String ans_b=bundle.getString("ans_b");
+            String ans_c=bundle.getString("ans_c");
+            String ans_d=bundle.getString("ans_d");
+            int  right_index=bundle.getInt("right_index");
+
+            //ShowQuesitonFragment.this.setQuestion(new );
+            view.setQuestion(new Question(
+                    content,ans_a,ans_b,ans_c,ans_d,right_index
+            ));
+        }
     }
 }
