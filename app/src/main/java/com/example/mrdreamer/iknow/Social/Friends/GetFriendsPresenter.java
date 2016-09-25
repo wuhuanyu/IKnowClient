@@ -1,11 +1,10 @@
 package com.example.mrdreamer.iknow.Social.Friends;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.DataSource.DataSource;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import java.util.ArrayList;
 

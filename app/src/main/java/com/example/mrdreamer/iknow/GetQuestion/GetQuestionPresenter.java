@@ -12,26 +12,19 @@ public class GetQuestionPresenter implements Contract.Presenter{
     private Contract.Model model;
     public GetQuestionPresenter(@NonNull Contract.View view){
         this.view=view;
-        this.model=new GetQuestionModel(this);
+        this.model=GetQuestionModel.newInstance(this);
+        model.SetAnswerQuestionMode(new GetQuestionModel.SingleMode(this));
         view.setPresenter(this);
-
     }
 
     @Override
     public void getQuesiton() {
         model.FetechQuestion();
-
-
     }
 
     @Override
     public void onQuestionFetchedCallback(Question q) {
-
         view.setQuestion(q);
-
     }
-
-
-
 
 }

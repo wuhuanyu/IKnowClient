@@ -4,18 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DialerFilter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.mrdreamer.iknow.GetQuestion.Contract;
 import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.DataSource.Utils;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 /**
  * Created by stack on 9/9/16.

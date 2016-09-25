@@ -1,11 +1,8 @@
-package com.example.mrdreamer.iknow.Social;
+package com.example.mrdreamer.iknow;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import com.example.mrdreamer.iknow.IKnowApplication;
-import com.example.mrdreamer.iknow.R;
+import android.support.annotation.Nullable;
 
 /**
  * Created by stack on 8/21/16.
@@ -24,7 +21,6 @@ public class User {
     }
 
     public User(String name,boolean isLogin){
-           //User.User(name,"","",isLogin);
         this(name,"","",isLogin);
     }
     public User(String name){
@@ -65,6 +61,7 @@ public class User {
         return this.isPKMode;
     }
 
+    @Nullable
     public static User getUser(){
         Context context= IKnowApplication.getAppContext();
           SharedPreferences sharedPreferences=context.getSharedPreferences(
@@ -80,12 +77,14 @@ public class User {
     //    return new User(name,"",password,isLogin);
         User user=new User(name,"",password,isLogin);
         user.setIsPKMode(isPKMode);
+
         return user;
     }
 
 
 
     public static void setUser(User user){
+
         Context context=IKnowApplication.getAppContext();
         SharedPreferences sharedPreferences=IKnowApplication.getAppContext().getSharedPreferences(
                 IKnowApplication.getAppContext().getString(R.string.preference),
@@ -96,7 +95,7 @@ public class User {
         editor.putString(context.getString(R.string.preferencePassword),user.getName());
         editor.putBoolean(context.getString(R.string.preferenceisLogin),user.getIsLoginBoolean());
         editor.putBoolean(context.getString(R.string.preferenceidPKMode),user.getIsPKMode());
-
+        IKnowApplication.setUser(user);
         editor.commit();
     }
 
@@ -111,8 +110,6 @@ public class User {
     }
 
 
-    interface IKnowMode{
-        void  FetchQuestion();
-    }
+
 
 }

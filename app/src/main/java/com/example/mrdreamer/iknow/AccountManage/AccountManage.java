@@ -1,12 +1,7 @@
 package com.example.mrdreamer.iknow.AccountManage;
 
-import android.widget.Toast;
-
 import com.example.mrdreamer.iknow.IKnowApplication;
-import com.example.mrdreamer.iknow.Social.User;
-import com.example.mrdreamer.iknow.Utils;
-
-import java.io.IOException;
+import com.example.mrdreamer.iknow.User;
 
 /**
  * Created by stack on 9/15/16.

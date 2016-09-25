@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.IKnowApplication;
@@ -14,7 +13,7 @@ import com.example.mrdreamer.iknow.Social.DataSource.DB.DBHelper;
 import com.example.mrdreamer.iknow.Social.DataSource.DB.DataPersistenceContract;
 import com.example.mrdreamer.iknow.Social.DataSource.DataSource;
 import com.example.mrdreamer.iknow.Social.DataSource.Utils;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import org.json.JSONException;
 

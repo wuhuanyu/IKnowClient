@@ -12,28 +12,23 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.mrdreamer.iknow.AccountManage.AccountAbstract;
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.Constants;
 import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.RequestInfoAdapter;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 import com.example.mrdreamer.iknow.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 /**

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.mrdreamer.iknow.R;
+import com.example.mrdreamer.iknow.User;
 
 import java.util.ArrayList;
 

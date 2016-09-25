@@ -1,45 +1,29 @@
 package com.example.mrdreamer.iknow.Social.AddUser;
 
-import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.ListFragment;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.UiThread;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.Constants;
 import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.DataListAdapter;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 import com.example.mrdreamer.iknow.Utils;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.nio.Buffer;
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 /**

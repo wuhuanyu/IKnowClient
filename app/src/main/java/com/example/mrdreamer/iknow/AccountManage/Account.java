@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 import com.example.mrdreamer.iknow.Utils;
 
 /**

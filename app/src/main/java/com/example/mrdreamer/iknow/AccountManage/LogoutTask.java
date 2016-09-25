@@ -1,14 +1,9 @@
 package com.example.mrdreamer.iknow.AccountManage;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.mrdreamer.iknow.IKnowApplication;
-import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;

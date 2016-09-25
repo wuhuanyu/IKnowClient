@@ -1,9 +1,6 @@
 package com.example.mrdreamer.iknow.Social;
 
-import android.app.ListFragment;
 import android.content.Context;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.mrdreamer.iknow.R;
-
-import org.w3c.dom.Text;
+import com.example.mrdreamer.iknow.User;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Created by stack on 8/22/16.

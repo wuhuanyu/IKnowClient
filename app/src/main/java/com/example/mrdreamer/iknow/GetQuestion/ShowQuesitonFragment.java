@@ -3,30 +3,33 @@ package com.example.mrdreamer.iknow.GetQuestion;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.HttpAuthHandler;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
+import com.example.mrdreamer.iknow.Constants;
 import com.example.mrdreamer.iknow.GetQuestion.Receiver.GetQuestionReceiver;
 import com.example.mrdreamer.iknow.Question;
 import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
+import com.example.mrdreamer.iknow.Utils;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.InterruptedIOException;
-import java.sql.BatchUpdateException;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 
 /**
  * Created by stack on 8/19/16.
@@ -100,13 +103,6 @@ public class ShowQuesitonFragment extends Fragment implements Contract.View {
     public void setPresenter(Contract.Presenter p) {
         this.presenter=p;
     }
-
-    private static class FetchNewQuestionEngine{
-        public static void FetchNewQuestion(User user){
-
-        }
-    }
-
 
     private  static class QuestionHandler extends Handler {
         private Contract.View view;

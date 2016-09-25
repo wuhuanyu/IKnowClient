@@ -16,7 +16,7 @@ import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.Constants;
 import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

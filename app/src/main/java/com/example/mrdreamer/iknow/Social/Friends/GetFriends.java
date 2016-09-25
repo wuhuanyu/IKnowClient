@@ -3,23 +3,16 @@ package com.example.mrdreamer.iknow.Social.Friends;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuItemImpl;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.animation.Interpolator;
-import android.widget.Toast;
 
-import com.example.mrdreamer.iknow.IKnowApplication;
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.AddUser.AddFriends;
 import com.example.mrdreamer.iknow.Social.Injection;
-import com.example.mrdreamer.iknow.Social.User;
 import com.example.mrdreamer.iknow.Utils;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
-import com.mikepenz.actionitembadge.library.ActionItemBadgeAdder;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 
 

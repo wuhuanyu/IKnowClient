@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.Contract;
 import com.example.mrdreamer.iknow.Social.DataListAdapter;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import java.util.ArrayList;
 

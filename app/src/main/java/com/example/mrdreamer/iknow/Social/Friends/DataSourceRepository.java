@@ -2,7 +2,7 @@ package com.example.mrdreamer.iknow.Social.Friends;
 
 import com.example.mrdreamer.iknow.Constants;
 import com.example.mrdreamer.iknow.Social.DataSource.DataSource;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import java.util.ArrayList;
 

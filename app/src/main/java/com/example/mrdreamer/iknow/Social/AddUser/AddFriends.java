@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -15,18 +14,16 @@ import android.view.Menu;
 import com.example.mrdreamer.iknow.AccountManage.ConnectionUtils;
 import com.example.mrdreamer.iknow.R;
 import com.example.mrdreamer.iknow.Social.Friends.DataSourceRepository;
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 import com.example.mrdreamer.iknow.Utils;
 
 import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 /**

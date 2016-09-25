@@ -1,6 +1,6 @@
 package com.example.mrdreamer.iknow.Social.DataSource;
 
-import com.example.mrdreamer.iknow.Social.User;
+import com.example.mrdreamer.iknow.User;
 
 import java.util.ArrayList;
 
